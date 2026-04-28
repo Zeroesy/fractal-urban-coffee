@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef, useCallback } from 'react'
+import Image from 'next/image'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import {
   Coffee,
@@ -45,43 +46,44 @@ interface MenuItem {
   name: string
   description: string
   price: string
+  image: string
 }
 
 const coffeeMenu: MenuItem[] = [
-  { name: 'Espresso', description: 'Rich and bold single shot', price: 'Rp 21.000' },
-  { name: 'Americano', description: 'Espresso with hot water', price: 'Rp 24.000' },
-  { name: 'V60 Single Origin', description: 'Hand-drip pour over specialty', price: 'Rp 28.000' },
-  { name: 'Cappuccino', description: 'Espresso, steamed milk & foam', price: 'Rp 27.000' },
-  { name: 'Latte', description: 'Smooth espresso with creamy milk', price: 'Rp 27.000' },
-  { name: 'Piccolo', description: 'Small but mighty, perfect ristretto', price: 'Rp 23.000' },
-  { name: 'Affogato', description: 'Espresso drowned in gelato', price: 'Rp 30.000' },
-  { name: 'Mocha', description: 'Chocolate espresso dream', price: 'Rp 30.000' },
+  { name: 'Espresso', description: 'Rich and bold single shot', price: 'Rp 21.000', image: 'https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=200&h=200&fit=crop' },
+  { name: 'Americano', description: 'Espresso with hot water', price: 'Rp 24.000', image: 'https://images.unsplash.com/photo-1551030173-122aabc4489c?w=200&h=200&fit=crop' },
+  { name: 'V60 Single Origin', description: 'Hand-drip pour over specialty', price: 'Rp 28.000', image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200&h=200&fit=crop' },
+  { name: 'Cappuccino', description: 'Espresso, steamed milk & foam', price: 'Rp 27.000', image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=200&h=200&fit=crop' },
+  { name: 'Latte', description: 'Smooth espresso with creamy milk', price: 'Rp 27.000', image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=200&h=200&fit=crop' },
+  { name: 'Piccolo', description: 'Small but mighty, perfect ristretto', price: 'Rp 23.000', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefda?w=200&h=200&fit=crop' },
+  { name: 'Affogato', description: 'Espresso drowned in gelato', price: 'Rp 30.000', image: 'https://images.unsplash.com/photo-1579992357154-faf4bde95b3d?w=200&h=200&fit=crop' },
+  { name: 'Mocha', description: 'Chocolate espresso dream', price: 'Rp 30.000', image: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=200&h=200&fit=crop' },
 ]
 
 const nonCoffeeMenu: MenuItem[] = [
-  { name: 'Matcha Latte', description: 'Premium Japanese matcha', price: 'Rp 28.000' },
-  { name: 'Chocolate', description: 'Rich and velvety hot chocolate', price: 'Rp 27.000' },
-  { name: 'Taro Latte', description: 'Creamy purple taro milk', price: 'Rp 28.000' },
-  { name: 'Lemon Tea', description: 'Refreshing citrus infusion', price: 'Rp 22.000' },
-  { name: 'Fresh Juice', description: 'Seasonal fresh fruit blend', price: 'Rp 25.000' },
+  { name: 'Matcha Latte', description: 'Premium Japanese matcha', price: 'Rp 28.000', image: 'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=200&h=200&fit=crop' },
+  { name: 'Chocolate', description: 'Rich and velvety hot chocolate', price: 'Rp 27.000', image: 'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=200&h=200&fit=crop' },
+  { name: 'Taro Latte', description: 'Creamy purple taro milk', price: 'Rp 28.000', image: 'https://images.unsplash.com/photo-1625865636044-18e1b23e8a3e?w=200&h=200&fit=crop' },
+  { name: 'Lemon Tea', description: 'Refreshing citrus infusion', price: 'Rp 22.000', image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=200&h=200&fit=crop' },
+  { name: 'Fresh Juice', description: 'Seasonal fresh fruit blend', price: 'Rp 25.000', image: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=200&h=200&fit=crop' },
 ]
 
 const foodMenu: MenuItem[] = [
-  { name: 'Club Sandwich', description: 'Triple-layered classic favorite', price: 'Rp 35.000' },
-  { name: 'Nasi Goreng Spesial', description: 'Indonesian fried rice signature', price: 'Rp 38.000' },
-  { name: 'Pasta Aglio Olio', description: 'Italian garlic chili pasta', price: 'Rp 38.000' },
-  { name: 'French Fries', description: 'Crispy golden with dipping sauce', price: 'Rp 25.000' },
-  { name: 'Banana Bread', description: 'Homemade moist & warm', price: 'Rp 22.000' },
-  { name: 'Croissant', description: 'Buttery flaky pastry', price: 'Rp 20.000' },
+  { name: 'Club Sandwich', description: 'Triple-layered classic favorite', price: 'Rp 35.000', image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=200&h=200&fit=crop' },
+  { name: 'Nasi Goreng Spesial', description: 'Indonesian fried rice signature', price: 'Rp 38.000', image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=200&h=200&fit=crop' },
+  { name: 'Pasta Aglio Olio', description: 'Italian garlic chili pasta', price: 'Rp 38.000', image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=200&h=200&fit=crop' },
+  { name: 'French Fries', description: 'Crispy golden with dipping sauce', price: 'Rp 25.000', image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=200&h=200&fit=crop' },
+  { name: 'Banana Bread', description: 'Homemade moist & warm', price: 'Rp 22.000', image: 'https://images.unsplash.com/photo-1585023068448-d3220bc3b940?w=200&h=200&fit=crop' },
+  { name: 'Croissant', description: 'Buttery flaky pastry', price: 'Rp 20.000', image: 'https://images.unsplash.com/photo-1555507036-ab1f4038024a?w=200&h=200&fit=crop' },
 ]
 
 const galleryItems = [
-  { title: 'Cozy Corner', gradient: 'from-amber-900/80 via-yellow-900/60 to-orange-900/80', icon: '☕' },
-  { title: 'Aesthetic Spot', gradient: 'from-stone-800/80 via-amber-900/60 to-yellow-900/80', icon: '🌿' },
-  { title: 'Work Friendly', gradient: 'from-neutral-800/80 via-stone-800/60 to-zinc-800/80', icon: '💻' },
-  { title: 'Fine Dining', gradient: 'from-orange-900/80 via-red-900/60 to-amber-900/80', icon: '🍽️' },
-  { title: 'Instagrammable', gradient: 'from-yellow-900/80 via-amber-800/60 to-stone-900/80', icon: '📸' },
-  { title: 'Hidden Gem', gradient: 'from-amber-950/80 via-stone-900/60 to-zinc-900/80', icon: '✨' },
+  { title: 'Cozy Corner', gradient: 'from-emerald-900/80 via-green-900/60 to-lime-900/80', icon: '☕' },
+  { title: 'Aesthetic Spot', gradient: 'from-green-900/80 via-emerald-900/60 to-teal-900/80', icon: '🌿' },
+  { title: 'Work Friendly', gradient: 'from-emerald-950/80 via-green-900/60 to-teal-900/80', icon: '💻' },
+  { title: 'Fine Dining', gradient: 'from-green-900/80 via-emerald-800/60 to-lime-900/80', icon: '🍽️' },
+  { title: 'Instagrammable', gradient: 'from-teal-900/80 via-emerald-800/60 to-green-900/80', icon: '📸' },
+  { title: 'Hidden Gem', gradient: 'from-emerald-950/80 via-green-950/60 to-teal-950/80', icon: '✨' },
 ]
 
 const navLinks = [
@@ -135,9 +137,9 @@ function CoffeeBeanSVG({ className = '', flip = false }: { className?: string; f
 function DecorativeDivider() {
   return (
     <div className="flex items-center justify-center gap-3 py-2">
-      <Separator className="w-16 bg-caramel/30" />
-      <Coffee className="size-4 text-caramel/50" />
-      <Separator className="w-16 bg-caramel/30" />
+      <Separator className="w-16 bg-gold/30" />
+      <Coffee className="size-4 text-gold/50" />
+      <Separator className="w-16 bg-gold/30" />
     </div>
   )
 }
@@ -210,7 +212,7 @@ function Navbar() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between">
         {/* Logo */}
         <a href="#home" className="flex flex-col items-start group">
-          <span className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-primary transition-colors group-hover:text-caramel">
+          <span className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-primary transition-colors group-hover:text-gold">
             FRACTAL
           </span>
           <span className="text-[0.6rem] sm:text-xs tracking-[0.25em] uppercase text-muted-foreground font-medium">
@@ -229,7 +231,7 @@ function Navbar() {
               {link.label}
             </a>
           ))}
-          <Button size="sm" className="bg-caramel hover:bg-caramel/90 text-white rounded-full px-5" asChild>
+          <Button size="sm" className="bg-gold hover:bg-gold/90 text-white rounded-full px-5" asChild>
             <a href="https://maps.app.goo.gl/yiaA9bgW82DDbDWp9" target="_blank" rel="noopener noreferrer">
               <MapPin className="size-3.5" />
               Visit Us
@@ -259,7 +261,7 @@ function Navbar() {
                     href={link.href}
                     className="flex items-center gap-3 rounded-lg px-3 py-3 text-base font-medium hover:bg-accent/50 transition-colors"
                   >
-                    <ChevronRight className="size-4 text-caramel" />
+                    <ChevronRight className="size-4 text-gold" />
                     {link.label}
                   </a>
                 </SheetClose>
@@ -268,7 +270,7 @@ function Navbar() {
             <div className="mt-auto pb-8">
               <Separator className="mb-4" />
               <div className="flex items-center gap-3 px-3">
-                <Instagram className="size-4 text-caramel" />
+                <Instagram className="size-4 text-gold" />
                 <a
                   href="https://instagram.com/fractal.coffee"
                   target="_blank"
@@ -295,23 +297,23 @@ function HeroSection() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden grain-overlay"
     >
       {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-stone-100 via-amber-50/80 to-orange-50/60" />
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/80 via-green-50/60 to-lime-50/40" />
       <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent" />
 
       {/* Decorative blobs */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-caramel/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-200/15 rounded-full blur-3xl" />
-      <div className="absolute top-1/3 right-1/4 w-48 h-48 bg-orange-200/10 rounded-full blur-2xl" />
+      <div className="absolute top-20 left-10 w-72 h-72 bg-gold/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-green-200/15 rounded-full blur-3xl" />
+      <div className="absolute top-1/3 right-1/4 w-48 h-48 bg-emerald-200/10 rounded-full blur-2xl" />
 
       {/* Floating coffee beans decoration */}
       <div className="absolute top-24 right-8 sm:right-16 opacity-40 animate-float">
-        <CoffeeBeanSVG className="w-8 h-12 text-espresso" />
+        <CoffeeBeanSVG className="w-8 h-12 text-forest" />
       </div>
       <div className="absolute bottom-32 left-12 sm:left-20 opacity-30 animate-float" style={{ animationDelay: '2s' }}>
-        <CoffeeBeanSVG className="w-6 h-10 text-caramel" flip />
+        <CoffeeBeanSVG className="w-6 h-10 text-gold" flip />
       </div>
       <div className="absolute top-40 left-1/4 opacity-20 animate-float" style={{ animationDelay: '4s' }}>
-        <CoffeeBeanSVG className="w-5 h-8 text-mocha" />
+        <CoffeeBeanSVG className="w-5 h-8 text-emerald" />
       </div>
 
       {/* Content */}
@@ -321,7 +323,7 @@ function HeroSection() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: 'easeOut' }}
-          className="mx-auto mb-6 sm:mb-8 w-32 h-32 sm:w-40 sm:h-40 text-espresso"
+          className="mx-auto mb-6 sm:mb-8 w-32 h-32 sm:w-40 sm:h-40 text-forest"
         >
           <CoffeeCupSVG className="w-full h-full" />
         </motion.div>
@@ -340,13 +342,13 @@ function HeroSection() {
             Premium Coffee
           </h1>
           <div className="flex items-center justify-center gap-3 sm:gap-4 my-3 sm:my-4">
-            <Separator className="w-12 sm:w-20 bg-caramel/40" />
-            <Leaf className="size-4 sm:size-5 text-caramel/60" />
-            <Separator className="w-12 sm:w-20 bg-caramel/40" />
+            <Separator className="w-12 sm:w-20 bg-gold/40" />
+            <Leaf className="size-4 sm:size-5 text-gold/60" />
+            <Separator className="w-12 sm:w-20 bg-gold/40" />
           </div>
           <div className="font-serif text-2xl sm:text-3xl md:text-4xl text-primary/80 tracking-wide">
             <span>Fine Dish</span>
-            <span className="mx-2 sm:mx-3 text-caramel/70">•</span>
+            <span className="mx-2 sm:mx-3 text-gold/70">•</span>
             <span>Be Happy</span>
           </div>
         </motion.div>
@@ -380,7 +382,7 @@ function HeroSection() {
         >
           <Button
             size="lg"
-            className="bg-caramel hover:bg-caramel/85 text-white rounded-full px-8 py-6 text-base shadow-lg shadow-caramel/20 transition-all hover:shadow-xl hover:shadow-caramel/30 hover:scale-105"
+            className="bg-gold hover:bg-gold/85 text-white rounded-full px-8 py-6 text-base shadow-lg shadow-gold/20 transition-all hover:shadow-xl hover:shadow-gold/30 hover:scale-105"
             asChild
           >
             <a href="#menu">
@@ -429,8 +431,8 @@ function AboutSection() {
   return (
     <section id="about" className="py-20 md:py-28 bg-background relative overflow-hidden">
       {/* Subtle decorative elements */}
-      <div className="absolute -top-32 -right-32 w-64 h-64 bg-caramel/5 rounded-full blur-3xl" />
-      <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-amber-100/30 rounded-full blur-3xl" />
+      <div className="absolute -top-32 -right-32 w-64 h-64 bg-gold/5 rounded-full blur-3xl" />
+      <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-green-100/30 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading title="Our Story" subtitle="A hidden gem waiting to be discovered" />
@@ -444,8 +446,8 @@ function AboutSection() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="relative"
           >
-            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl shadow-espresso/10">
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-800 via-stone-700 to-amber-900" />
+            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl shadow-forest/10">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-800 via-green-800 to-emerald-900" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
               {/* Decorative pattern */}
               <div className="absolute inset-0 opacity-10">
@@ -477,7 +479,7 @@ function AboutSection() {
               </div>
             </div>
             {/* Floating accent card */}
-            <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-caramel text-white rounded-xl p-4 shadow-xl shadow-caramel/20">
+            <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-gold text-white rounded-xl p-4 shadow-xl shadow-gold/20">
               <Star className="size-6 mb-1" />
               <p className="text-sm font-bold">Hidden Gem</p>
               <p className="text-xs text-white/80">of Solo</p>
@@ -523,9 +525,9 @@ function AboutSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 * index }}
                 >
-                  <Card className="border-border/50 hover:border-caramel/30 hover:shadow-md transition-all duration-300 py-4 gap-3">
+                  <Card className="border-border/50 hover:border-gold/30 hover:shadow-md transition-all duration-300 py-4 gap-3">
                     <CardContent className="px-4">
-                      <stat.icon className="size-5 text-caramel mb-1.5" />
+                      <stat.icon className="size-5 text-gold mb-1.5" />
                       <p className="text-sm font-semibold text-primary leading-tight">{stat.label}</p>
                     </CardContent>
                   </Card>
@@ -549,24 +551,37 @@ function MenuItemCard({ item, index }: { item: MenuItem; index: number }) {
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: 0.05 * index }}
     >
-      <Card className="group border-border/50 hover:border-caramel/30 hover:shadow-lg hover:shadow-caramel/5 transition-all duration-300 py-0 gap-0 overflow-hidden">
-        <CardContent className="p-5 flex items-start justify-between gap-3">
-          <div className="flex-1 min-w-0">
-            <h3 className="font-serif font-semibold text-base sm:text-lg text-primary group-hover:text-caramel transition-colors">
-              {item.name}
-            </h3>
-            <p className="text-xs sm:text-sm text-muted-foreground mt-1 leading-relaxed">
-              {item.description}
-            </p>
+      <Card className="group border-border/50 hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5 transition-all duration-300 py-0 gap-0 overflow-hidden">
+        <CardContent className="p-4 sm:p-5 flex items-center gap-3 sm:gap-4">
+          {/* Menu item image */}
+          <div className="flex-shrink-0 w-[60px] h-[60px] sm:w-[72px] sm:h-[72px] relative rounded-xl overflow-hidden shadow-md border border-border/30 bg-gradient-to-br from-sage/50 to-emerald/30">
+            <Image
+              src={item.image}
+              alt={item.name}
+              fill
+              className="object-cover"
+              sizes="72px"
+              unoptimized
+            />
           </div>
-          <div className="flex-shrink-0 text-right">
-            <p className="font-semibold text-sm sm:text-base text-caramel whitespace-nowrap">
-              {item.price}
+
+          {/* Text content */}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between gap-2">
+              <h3 className="font-serif font-semibold text-base sm:text-lg text-primary group-hover:text-gold transition-colors leading-tight">
+                {item.name}
+              </h3>
+              <p className="flex-shrink-0 font-semibold text-sm sm:text-base text-gold whitespace-nowrap">
+                {item.price}
+              </p>
+            </div>
+            <p className="text-xs sm:text-sm text-muted-foreground mt-0.5 leading-relaxed">
+              {item.description}
             </p>
           </div>
         </CardContent>
         {/* Hover accent line */}
-        <div className="h-0.5 bg-gradient-to-r from-caramel/0 via-caramel/50 to-caramel/0 scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+        <div className="h-0.5 bg-gradient-to-r from-gold/0 via-gold/50 to-gold/0 scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
       </Card>
     </motion.div>
   )
@@ -576,8 +591,8 @@ function MenuSection() {
   return (
     <section id="menu" className="py-20 md:py-28 relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-cream/50 to-background" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-caramel/5 rounded-full blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-ivory/50 to-background" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gold/5 rounded-full blur-3xl" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
@@ -587,15 +602,15 @@ function MenuSection() {
 
         <Tabs defaultValue="coffee" className="w-full">
           <TabsList className="mx-auto flex h-auto p-1 bg-secondary/50 rounded-full">
-            <TabsTrigger value="coffee" className="rounded-full px-5 sm:px-8 py-2.5 text-sm data-[state=active]:bg-caramel data-[state=active]:text-white">
+            <TabsTrigger value="coffee" className="rounded-full px-5 sm:px-8 py-2.5 text-sm data-[state=active]:bg-gold data-[state=active]:text-white">
               <Coffee className="size-4 sm:mr-2" />
               <span className="hidden sm:inline">Coffee</span>
             </TabsTrigger>
-            <TabsTrigger value="non-coffee" className="rounded-full px-5 sm:px-8 py-2.5 text-sm data-[state=active]:bg-caramel data-[state=active]:text-white">
+            <TabsTrigger value="non-coffee" className="rounded-full px-5 sm:px-8 py-2.5 text-sm data-[state=active]:bg-gold data-[state=active]:text-white">
               <Leaf className="size-4 sm:mr-2" />
               <span className="hidden sm:inline">Non-Coffee</span>
             </TabsTrigger>
-            <TabsTrigger value="food" className="rounded-full px-5 sm:px-8 py-2.5 text-sm data-[state=active]:bg-caramel data-[state=active]:text-white">
+            <TabsTrigger value="food" className="rounded-full px-5 sm:px-8 py-2.5 text-sm data-[state=active]:bg-gold data-[state=active]:text-white">
               <UtensilsCrossed className="size-4 sm:mr-2" />
               <span className="hidden sm:inline">Fine Dish</span>
             </TabsTrigger>
@@ -676,7 +691,7 @@ function GallerySection() {
                 </span>
               </div>
               {/* Hover overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-espresso/80 via-espresso/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
+              <div className="absolute inset-0 bg-gradient-to-t from-forest/80 via-forest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
                 <div className="p-5 sm:p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                   <p className="font-serif text-white text-lg sm:text-xl font-bold">{item.title}</p>
                   <p className="text-white/70 text-xs sm:text-sm mt-1">Fractal Urban Classic Coffee</p>
@@ -697,8 +712,8 @@ function GallerySection() {
 function LocationSection() {
   return (
     <section id="location" className="py-20 md:py-28 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-cream/30 to-background" />
-      <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-caramel/5 rounded-full blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-ivory/30 to-background" />
+      <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-gold/5 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
@@ -713,7 +728,7 @@ function LocationSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7 }}
-            className="relative rounded-2xl overflow-hidden shadow-xl shadow-espresso/10 aspect-square md:aspect-auto md:min-h-[450px]"
+            className="relative rounded-2xl overflow-hidden shadow-xl shadow-forest/10 aspect-square md:aspect-auto md:min-h-[450px]"
           >
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.22!2d110.80905!3d-7.55409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMzMnMTQuNyJTIDExMMKwNDgnMzIuNiJF!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
@@ -737,10 +752,10 @@ function LocationSection() {
             className="space-y-5"
           >
             {/* Address */}
-            <Card className="border-border/50 hover:border-caramel/20 transition-colors py-5 gap-4">
+            <Card className="border-border/50 hover:border-gold/20 transition-colors py-5 gap-4">
               <CardContent className="px-5 flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-caramel/10 flex items-center justify-center">
-                  <MapPin className="size-5 text-caramel" />
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
+                  <MapPin className="size-5 text-gold" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-primary text-sm">Our Address</h3>
@@ -756,10 +771,10 @@ function LocationSection() {
             </Card>
 
             {/* Operating Hours */}
-            <Card className="border-border/50 hover:border-caramel/20 transition-colors py-5 gap-4">
+            <Card className="border-border/50 hover:border-gold/20 transition-colors py-5 gap-4">
               <CardContent className="px-5 flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-caramel/10 flex items-center justify-center">
-                  <Clock className="size-5 text-caramel" />
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
+                  <Clock className="size-5 text-gold" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-primary text-sm">Operating Hours</h3>
@@ -778,10 +793,10 @@ function LocationSection() {
             </Card>
 
             {/* Social */}
-            <Card className="border-border/50 hover:border-caramel/20 transition-colors py-5 gap-4">
+            <Card className="border-border/50 hover:border-gold/20 transition-colors py-5 gap-4">
               <CardContent className="px-5 flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-caramel/10 flex items-center justify-center">
-                  <Instagram className="size-5 text-caramel" />
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
+                  <Instagram className="size-5 text-gold" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-primary text-sm">Follow Us</h3>
@@ -789,7 +804,7 @@ function LocationSection() {
                     href="https://instagram.com/fractal.coffee"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-caramel transition-colors mt-1"
+                    className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-gold transition-colors mt-1"
                   >
                     @fractal.coffee
                     <ExternalLink className="size-3" />
@@ -800,7 +815,7 @@ function LocationSection() {
 
             {/* Google Maps Link */}
             <Button
-              className="w-full bg-caramel hover:bg-caramel/85 text-white rounded-xl py-6 text-base shadow-lg shadow-caramel/15 transition-all hover:shadow-xl hover:shadow-caramel/25"
+              className="w-full bg-gold hover:bg-gold/85 text-white rounded-xl py-6 text-base shadow-lg shadow-gold/15 transition-all hover:shadow-xl hover:shadow-gold/25"
               asChild
             >
               <a
@@ -824,9 +839,9 @@ function LocationSection() {
 
 function Footer() {
   return (
-    <footer className="bg-espresso text-primary-foreground relative overflow-hidden">
+    <footer className="bg-forest text-primary-foreground relative overflow-hidden">
       {/* Decorative top border */}
-      <div className="h-1 bg-gradient-to-r from-caramel/0 via-caramel/60 to-caramel/0" />
+      <div className="h-1 bg-gradient-to-r from-gold/0 via-gold/60 to-gold/0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
@@ -858,9 +873,9 @@ function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm text-primary-foreground/50 hover:text-caramel transition-colors inline-flex items-center gap-1.5 group"
+                    className="text-sm text-primary-foreground/50 hover:text-gold transition-colors inline-flex items-center gap-1.5 group"
                   >
-                    <ChevronRight className="size-3 text-caramel/40 group-hover:text-caramel transition-colors" />
+                    <ChevronRight className="size-3 text-gold/40 group-hover:text-gold transition-colors" />
                     {link.label}
                   </a>
                 </li>
@@ -875,20 +890,20 @@ function Footer() {
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <a href="#menu" className="text-sm text-primary-foreground/50 hover:text-caramel transition-colors inline-flex items-center gap-1.5 group">
-                  <ChevronRight className="size-3 text-caramel/40 group-hover:text-caramel transition-colors" />
+                <a href="#menu" className="text-sm text-primary-foreground/50 hover:text-gold transition-colors inline-flex items-center gap-1.5 group">
+                  <ChevronRight className="size-3 text-gold/40 group-hover:text-gold transition-colors" />
                   Coffee
                 </a>
               </li>
               <li>
-                <a href="#menu" className="text-sm text-primary-foreground/50 hover:text-caramel transition-colors inline-flex items-center gap-1.5 group">
-                  <ChevronRight className="size-3 text-caramel/40 group-hover:text-caramel transition-colors" />
+                <a href="#menu" className="text-sm text-primary-foreground/50 hover:text-gold transition-colors inline-flex items-center gap-1.5 group">
+                  <ChevronRight className="size-3 text-gold/40 group-hover:text-gold transition-colors" />
                   Non-Coffee
                 </a>
               </li>
               <li>
-                <a href="#menu" className="text-sm text-primary-foreground/50 hover:text-caramel transition-colors inline-flex items-center gap-1.5 group">
-                  <ChevronRight className="size-3 text-caramel/40 group-hover:text-caramel transition-colors" />
+                <a href="#menu" className="text-sm text-primary-foreground/50 hover:text-gold transition-colors inline-flex items-center gap-1.5 group">
+                  <ChevronRight className="size-3 text-gold/40 group-hover:text-gold transition-colors" />
                   Fine Dish
                 </a>
               </li>
@@ -902,29 +917,29 @@ function Footer() {
             </h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-2.5">
-                <MapPin className="size-4 text-caramel/70 flex-shrink-0 mt-0.5" />
+                <MapPin className="size-4 text-gold/70 flex-shrink-0 mt-0.5" />
                 <span className="text-sm text-primary-foreground/50 leading-relaxed">
                   Jl. Pelatuk I, Manahan, Solo
                 </span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Instagram className="size-4 text-caramel/70 flex-shrink-0" />
+                <Instagram className="size-4 text-gold/70 flex-shrink-0" />
                 <a
                   href="https://instagram.com/fractal.coffee"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-primary-foreground/50 hover:text-caramel transition-colors"
+                  className="text-sm text-primary-foreground/50 hover:text-gold transition-colors"
                 >
                   @fractal.coffee
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
-                <ExternalLink className="size-4 text-caramel/70 flex-shrink-0" />
+                <ExternalLink className="size-4 text-gold/70 flex-shrink-0" />
                 <a
                   href="https://maps.app.goo.gl/yiaA9bgW82DDbDWp9"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-primary-foreground/50 hover:text-caramel transition-colors"
+                  className="text-sm text-primary-foreground/50 hover:text-gold transition-colors"
                 >
                   Google Maps
                 </a>
