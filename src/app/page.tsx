@@ -85,12 +85,48 @@ const foodMenu: MenuItem[] = [
 ]
 
 const galleryItems = [
-  { title: 'Cozy Corner', gradient: 'from-emerald-900/80 via-green-900/60 to-lime-900/80', icon: '☕' },
-  { title: 'Aesthetic Spot', gradient: 'from-green-900/80 via-emerald-900/60 to-teal-900/80', icon: '🌿' },
-  { title: 'Work Friendly', gradient: 'from-emerald-950/80 via-green-900/60 to-teal-900/80', icon: '💻' },
-  { title: 'Fine Dining', gradient: 'from-green-900/80 via-emerald-800/60 to-lime-900/80', icon: '🍽️' },
-  { title: 'Instagrammable', gradient: 'from-teal-900/80 via-emerald-800/60 to-green-900/80', icon: '📸' },
-  { title: 'Hidden Gem', gradient: 'from-emerald-950/80 via-green-950/60 to-teal-950/80', icon: '✨' },
+  {
+    title: 'Our Space',
+    description: 'Modern interior with warm lighting',
+    image: 'https://lh3.googleusercontent.com/gps-cs-s/APNQkAEp6so0stPFEBaNL0TWh7F5QHsc1uCycMfpYSwaA3YAx44GjH-LEE17Y9wg9kJqYfmPa-KcM-XMCueq7XF8yRuenVq1QRpoJ-o7jPNpIC2tzk6pqogx-bRsySnbi5TNCHnBMeuUeFKh8UY=w800-h600-k-no',
+    source: 'Google Maps',
+    span: 'sm:col-span-2 lg:col-span-2 lg:row-span-2',
+  },
+  {
+    title: 'Cozy Corner',
+    description: 'Perfect spot for your favorite brew',
+    image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop',
+    source: 'Atmosphere',
+    span: '',
+  },
+  {
+    title: 'Aesthetic Vibes',
+    description: 'Cinematic interior for every mood',
+    image: 'https://images.unsplash.com/photo-1493857671505-72967e2e2760?w=600&h=400&fit=crop',
+    source: 'Atmosphere',
+    span: '',
+  },
+  {
+    title: 'Work Friendly',
+    description: 'Free WiFi, comfy seats, great coffee',
+    image: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=600&h=400&fit=crop',
+    source: 'Atmosphere',
+    span: '',
+  },
+  {
+    title: 'Hidden Gem',
+    description: 'Nestled in Manahan, Solo',
+    image: 'https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=600&h=400&fit=crop',
+    source: 'Atmosphere',
+    span: '',
+  },
+  {
+    title: 'Fine Dish Experience',
+    description: 'Where coffee meets culinary art',
+    image: 'https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=600&h=400&fit=crop',
+    source: 'Atmosphere',
+    span: '',
+  },
 ]
 
 const navLinks = [
@@ -454,27 +490,15 @@ function AboutSection() {
             className="relative"
           >
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl shadow-forest/10">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-800 via-green-800 to-emerald-900" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-              {/* Decorative pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <svg className="w-full h-full" viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {Array.from({ length: 20 }).map((_, i) => (
-                    <circle
-                      key={i}
-                      cx={50 + (i % 5) * 80}
-                      cy={50 + Math.floor(i / 5) * 110}
-                      r={15 + (i % 3) * 10}
-                      fill="white"
-                      opacity={0.3}
-                    />
-                  ))}
-                </svg>
-              </div>
-              {/* Center coffee cup icon */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Coffee className="size-24 text-white/20" />
-              </div>
+              <Image
+                src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAEp6so0stPFEBaNL0TWh7F5QHsc1uCycMfpYSwaA3YAx44GjH-LEE17Y9wg9kJqYfmPa-KcM-XMCueq7XF8yRuenVq1QRpoJ-o7jPNpIC2tzk6pqogx-bRsySnbi5TNCHnBMeuUeFKh8UY=w800-h1000-k-no"
+                alt="Fractal Urban Classic Coffee Interior"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                unoptimized
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
               {/* Text overlay */}
               <div className="absolute bottom-6 left-6 right-6">
                 <p className="font-serif text-white text-2xl font-bold drop-shadow-lg">
@@ -688,44 +712,55 @@ function GallerySection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 * index }}
-              className={`group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer ${
-                index === 0 || index === 5 ? 'sm:row-span-1 lg:row-span-1' : ''
-              }`}
+              className={`group relative rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-shadow duration-500 ${
+                item.span || 'aspect-[4/3]'
+              } ${item.span ? 'aspect-[4/3] sm:aspect-auto' : ''}`}
             >
-              {/* Gradient background as placeholder */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient}`} />
-              {/* Subtle pattern overlay */}
-              <div className="absolute inset-0 opacity-20">
-                <div className="absolute inset-0" style={{
-                  backgroundImage: `radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 40%),
-                    radial-gradient(circle at 60% 80%, rgba(255,255,255,0.06) 0%, transparent 45%)`,
-                }} />
-              </div>
-              {/* Grain texture */}
-              <div className="absolute inset-0 opacity-[0.04]"
-                style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-                }}
+              {/* Photo */}
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                unoptimized
               />
-              {/* Icon */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-5xl sm:text-6xl opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500">
-                  {item.icon}
-                </span>
+              {/* Dark overlay for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Content */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                <p className="font-serif text-white text-base sm:text-lg font-bold drop-shadow-md">{item.title}</p>
+                <p className="text-white/80 text-xs sm:text-sm mt-0.5">{item.description}</p>
+                {item.source && (
+                  <p className="text-white/50 text-[10px] sm:text-xs mt-1.5 flex items-center gap-1">
+                    <MapPin className="size-3" />
+                    {item.source}
+                  </p>
+                )}
               </div>
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-forest/80 via-forest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
-                <div className="p-5 sm:p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <p className="font-serif text-white text-lg sm:text-xl font-bold">{item.title}</p>
-                  <p className="text-white/70 text-xs sm:text-sm mt-1">Fractal Urban Classic Coffee</p>
-                </div>
-              </div>
-              {/* Zoom effect */}
-              <div className="absolute inset-0 group-hover:scale-105 transition-transform duration-700" />
             </motion.div>
           ))}
         </div>
+
+        {/* See more on Google Maps */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-center mt-8 sm:mt-10"
+        >
+          <Button
+            variant="outline"
+            className="rounded-full px-6 sm:px-8 py-5 text-sm border-gold/30 text-gold hover:bg-gold hover:text-white transition-all duration-300 hover:shadow-lg hover:shadow-gold/20"
+            asChild
+          >
+            <a href="https://maps.app.goo.gl/yiaA9bgW82DDbDWp9" target="_blank" rel="noopener noreferrer">
+              <ExternalLink className="size-4 mr-2" />
+              Lihat Foto Lengkap di Google Maps
+            </a>
+          </Button>
+        </motion.div>
       </div>
     </section>
   )
