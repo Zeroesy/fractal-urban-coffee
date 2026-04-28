@@ -1,0 +1,65 @@
+[
+  {
+    "url": "https://maps.google.com",
+    "name": "Google Maps",
+    "snippet": "Find local businesses, view maps and get driving directions in Google Maps .\nFind local businesses, view maps and get driving directions in Google Maps.",
+    "host_name": "maps.google.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://apps.apple.com/us/app/google-maps/id585027354",
+    "name": "‎Google Maps App - App Store",
+    "snippet": "Find the best routes with live traffic data and real-time GPS navigation for driving, walking, cycling, and public transport. Discover over 250 million businesses and places - from restaurants and shops to everyday essentials – with photos, reviews, and helpful information.",
+    "host_name": "apps.apple.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.google.com/maps/search/,+-",
+    "name": "Google Maps",
+    "snippet": "Why this ad?",
+    "host_name": "www.google.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://maps.google.com/maps/dir/?entry=wc",
+    "name": "Directions, Traffic & Transit - Google Maps",
+    "snippet": "Find local businesses, view maps and get driving directions in Google Maps.",
+    "host_name": "maps.google.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://maps.google.co.ke/mapfiles/home3.html",
+    "name": "Google Maps",
+    "snippet": "Discover places, get directions, and explore real-time updates on traffic and public transportation with Google Maps.",
+    "host_name": "maps.google.co.ke",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://play.google.com/store/apps/details?id=com.google.android.apps.maps&hl=en-US",
+    "name": "Google Maps - Apps on Google Play",
+    "snippet": "Find the best routes with live traffic data and real-time GPS navigation for driving, walking, cycling, and public transport. Discover over 250 million businesses and places - from restaurants and...",
+    "host_name": "play.google.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://maps.google.ca/mapfiles/home3.html",
+    "name": "Google Maps",
+    "snippet": "Explore the world with Google Maps, featuring Street View, 3D mapping, turn-by-turn directions, and indoor maps on all your devices.",
+    "host_name": "maps.google.ca",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  }
+]
