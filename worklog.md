@@ -92,3 +92,23 @@ Stage Summary:
 - Added CTA button linking to Google Maps for more photos
 - Theme already green/gold/white (confirmed from globals.css)
 - Menu already accurate to real menu (confirmed from worklog Task ID 2)
+
+---
+Task ID: 4
+Agent: Main Agent
+Task: Fix red pin position on embedded Google Maps in Location section
+
+Work Log:
+- Identified issue: Google Maps embed URL used null place ID (`0x0:0x0`) and approximate coordinates (`110.80905, -7.55409`)
+- Searched for exact coordinates using web-search skill
+- Found correct coordinates from Apple Maps: latitude -7.554096, longitude 110.811626
+- Address confirmed: Jalan Pelatuk I No. 6, Surakarta, Central Java 57139
+- Replaced the `pb=` embed URL with a search-based embed URL that uses business name + address:
+  `https://maps.google.com/maps?q=Fractal+Urban+Classic+Coffee+Jl.+Pelatuk+I+Manahan+Surakarta&t=&z=17&ie=UTF8&iwloc=&output=embed`
+- This ensures the pin is placed at the correct business location rather than approximate coordinates
+- Verified: lint clean, HTTP 200, dev server running
+
+Stage Summary:
+- Map embed now uses search-based URL which resolves to the correct pin location
+- Red pin should now point accurately to Fractal Urban Classic Coffee
+- Zoom level set to 17 for clear street-level visibility

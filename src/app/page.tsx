@@ -790,7 +790,7 @@ function LocationSection() {
             className="relative rounded-2xl overflow-hidden shadow-xl shadow-forest/10 aspect-square md:aspect-auto md:min-h-[450px]"
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.22!2d110.80905!3d-7.55409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMzMnMTQuNyJTIDExMMKwNDgnMzIuNiJF!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+              src="https://maps.google.com/maps?q=Fractal+Urban+Classic+Coffee+Jl.+Pelatuk+I+Manahan+Surakarta&t=&z=17&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0, minHeight: '400px' }}
