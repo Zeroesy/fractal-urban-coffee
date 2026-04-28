@@ -33,3 +33,28 @@ Stage Summary:
 - Warm coffee-themed design with custom CSS variables
 - Fully responsive (mobile-first)
 - Dev server running on port 3000
+
+---
+Task ID: 2
+Agent: Main Agent
+Task: Update menu to match real Fractal Coffee menu from Google Maps/GoFood
+
+Work Log:
+- Fetched Google Maps page for Fractal Urban Classic Coffee
+- Searched GoFood and multiple sources for actual menu items and prices
+- Found actual menu data from GoFood snippets and social media reviews:
+  - Espresso Bar: Espresso (21k), Americano (24k), Caffe Latte (23k), Cappuccino (27k), V60 (28k), Mocha (30k)
+  - HandCraft: Larasati/Gula Aren (25k), Van Halen/Vanilla (28k), French Caramel (28k), Macchiato (31k), Butterscotch (31k)
+  - Non-Coffee: Matcha Latte (28k), Choco Marshmallow (27k), Mocktail Berrie (25k), Mocktail Moody (25k), Lemon Tea (22k)
+  - Fine Dish: Sandwich (30k), Pasta Alfredo (38k), Nasi Goreng Merah (32k), Nasi Goreng Gongso (32k), Cireng Moza (25k), Chicken Salted Egg (35k), Milky Corn Ribs (28k)
+- Updated page.tsx with 4 menu tabs: Espresso Bar, HandCraft, Non-Coffee, Fine Dish
+- Replaced generic descriptions with actual GoFood descriptions
+- Each menu item has photo (Unsplash placeholder)
+- Verified no lint errors, dev server running with HTTP 200
+- Theme already updated to green/gold/white from previous session
+
+Stage Summary:
+- Menu now matches real Fractal Coffee menu from GoFood
+- 4 category tabs with 23 total menu items
+- All items have real prices and accurate descriptions
+- Green/gold/white theme active
