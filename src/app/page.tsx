@@ -49,39 +49,86 @@ interface MenuItem {
   image: string
 }
 
-const espressoBarMenu: MenuItem[] = [
-  { name: 'Espresso', description: '100% Arabica beans with bright fruity notes, a clean refined cup', price: 'Rp 21.000', image: 'https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=200&h=200&fit=crop' },
-  { name: 'Americano', description: 'Clean and bright, espresso diluted with hot water for a smooth cup', price: 'Rp 24.000', image: 'https://images.unsplash.com/photo-1551030173-122aabc4489c?w=200&h=200&fit=crop' },
-  { name: 'Caffe Latte', description: 'Balanced blend of rich espresso and fresh milk, creamy and well-rounded', price: 'Rp 23.000', image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=200&h=200&fit=crop' },
-  { name: 'Cappuccino', description: 'Classic espresso with velvety steamed milk and thick foam layer', price: 'Rp 27.000', image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=200&h=200&fit=crop' },
-  { name: 'V60', description: 'Brewed with precision for a clean, bright cup highlighting the bean\'s origin', price: 'Rp 28.000', image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200&h=200&fit=crop' },
-  { name: 'Mocha', description: 'Rich chocolate blended with espresso and steamed milk', price: 'Rp 30.000', image: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=200&h=200&fit=crop' },
+// ─── Menu Data (from official menu PDF) ────────────────────────────────────
+
+const basicCoffeeMenu: MenuItem[] = [
+  { name: 'Espresso', description: 'Rich and bold single shot of our finest beans', price: 'Rp 12.000', image: 'https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=200&h=200&fit=crop' },
+  { name: 'Americano', description: 'Clean and bright, espresso with hot water', price: 'Rp 18.000', image: 'https://images.unsplash.com/photo-1551030173-122aabc4489c?w=200&h=200&fit=crop' },
+  { name: 'Latte', description: 'Smooth espresso blended with steamed milk', price: 'Rp 18.000', image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=200&h=200&fit=crop' },
+  { name: 'Cappuccino', description: 'Classic espresso with velvety foam layer', price: 'Rp 22.000', image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=200&h=200&fit=crop' },
+  { name: 'Dirty Latte', description: 'Bold espresso poured over cold milk', price: 'Rp 25.000', image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=200&h=200&fit=crop' },
+  { name: 'V-60 / Japanese', description: 'Pour-over brewed with precision — hot/ice', price: 'Rp 20.000', image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200&h=200&fit=crop' },
+  { name: 'Magic (Secret Milk)', description: 'Our signature ristretto with silky milk', price: 'Rp 25.000', image: 'https://images.unsplash.com/photo-1534778101976-62847782c213?w=200&h=200&fit=crop' },
 ]
 
 const handCraftMenu: MenuItem[] = [
-  { name: 'Larasati (Gula Aren)', description: 'Refined espresso, creamy milk, and rich palm sugar — smooth and velvety', price: 'Rp 25.000', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefda?w=200&h=200&fit=crop' },
-  { name: 'Van Halen (Vanilla)', description: 'Smooth espresso with premium vanilla for a sweet aromatic finish', price: 'Rp 28.000', image: 'https://images.unsplash.com/photo-1534778101976-62847782c213?w=200&h=200&fit=crop' },
-  { name: 'French Caramel', description: 'Rich caramel base blended with espresso for a luxurious buttery cup', price: 'Rp 28.000', image: 'https://images.unsplash.com/photo-1579992357154-faf4bde95b3d?w=200&h=200&fit=crop' },
-  { name: 'Macchiato', description: 'Bold espresso marked with a dollop of foamed milk', price: 'Rp 31.000', image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=200&h=200&fit=crop' },
-  { name: 'Butterscotch', description: 'Creamy butterscotch sweetness meets bold espresso in every sip', price: 'Rp 31.000', image: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=200&h=200&fit=crop' },
+  { name: 'Larasati', description: 'Brown sugar creamy latte', price: 'Rp 20.000', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefda?w=200&h=200&fit=crop' },
+  { name: 'Maharasa', description: 'Brown sugar with double espresso', price: 'Rp 24.000', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefda?w=200&h=200&fit=crop' },
+  { name: 'Rum Burner', description: 'Flavour rum with latte', price: 'Rp 23.000', image: 'https://images.unsplash.com/photo-1534778101976-62847782c213?w=200&h=200&fit=crop' },
+  { name: 'Van Halen', description: 'Vanilla syrup with condensed milk', price: 'Rp 23.000', image: 'https://images.unsplash.com/photo-1579992357154-faf4bde95b3d?w=200&h=200&fit=crop' },
+  { name: 'French Caramel', description: 'Caramel syrup with condensed milk', price: 'Rp 23.000', image: 'https://images.unsplash.com/photo-1579992357154-faf4bde95b3d?w=200&h=200&fit=crop' },
+  { name: 'Butterscotch Salt', description: 'Salty cream and lotus biscuit', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=200&h=200&fit=crop' },
+  { name: 'Mocca', description: 'Rich chocolate with espresso', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=200&h=200&fit=crop' },
+  { name: 'Hazelnut', description: 'Hazelnut syrup with condensed milk', price: 'Rp 23.000', image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=200&h=200&fit=crop' },
+]
+
+const matchaChocoMenu: MenuItem[] = [
+  { name: 'Matcha Latte', description: 'Creamy milk with premium matcha', price: 'Rp 25.000', image: 'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=200&h=200&fit=crop' },
+  { name: 'Matcha Mango Sticky Rice', description: 'Fresh coconut, mango flavour, matcha & whipping cream', price: 'Rp 27.000', image: 'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=200&h=200&fit=crop' },
+  { name: 'Coconut Matcha', description: 'Fresh coconut with whipping cream and matcha', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=200&h=200&fit=crop' },
+  { name: 'Choco Marshmallow', description: 'Thick chocolate and marshmallow on top', price: 'Rp 24.000', image: 'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=200&h=200&fit=crop' },
+  { name: 'Coconut Choco', description: 'Fresh coconut with whipping cream and choco', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=200&h=200&fit=crop' },
 ]
 
 const nonCoffeeMenu: MenuItem[] = [
-  { name: 'Matcha Latte', description: 'Premium Japanese green tea and fresh milk, delicate flavor and calming aroma', price: 'Rp 28.000', image: 'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=200&h=200&fit=crop' },
-  { name: 'Choco Marshmallow', description: 'Rich chocolate drink topped with soft marshmallows for a decadent treat', price: 'Rp 27.000', image: 'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=200&h=200&fit=crop' },
-  { name: 'Mocktail Berrie', description: 'Refreshing berry-based mocktail, perfect for a cooling sip', price: 'Rp 25.000', image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=200&h=200&fit=crop' },
-  { name: 'Mocktail Moody', description: 'Cool and moody mocktail blend, refreshing with a mysterious twist', price: 'Rp 25.000', image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=200&h=200&fit=crop' },
-  { name: 'Lemon Tea', description: 'Refreshing citrus infusion, zesty and revitalizing', price: 'Rp 22.000', image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=200&h=200&fit=crop' },
+  { name: 'Red Velvet', description: 'Frappe series — smooth and velvety', price: 'Rp 25.000', image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=200&h=200&fit=crop' },
+  { name: 'Taro', description: 'Frappe series — sweet purple taro', price: 'Rp 25.000', image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=200&h=200&fit=crop' },
+  { name: 'Cookies n Cream', description: 'Frappe series — classic cookies blended', price: 'Rp 25.000', image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=200&h=200&fit=crop' },
+  { name: 'Classic Tea', description: 'Black tea — simple and refreshing', price: 'Rp 12.000', image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=200&h=200&fit=crop' },
+  { name: 'Lychee Tea', description: 'Lychee syrup with fresh lychee fruit', price: 'Rp 16.000', image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=200&h=200&fit=crop' },
 ]
 
-const foodMenu: MenuItem[] = [
-  { name: 'Sandwich', description: 'Breakfast sandwich yang nagih dan mengenyangkan', price: 'Rp 30.000', image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=200&h=200&fit=crop' },
-  { name: 'Pasta Alfredo', description: 'Creamy pasta with rich parmesan sauce, simply addictive', price: 'Rp 38.000', image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=200&h=200&fit=crop' },
-  { name: 'Nasi Goreng Merah', description: 'Indonesian-style red fried rice with bold savory flavors', price: 'Rp 32.000', image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=200&h=200&fit=crop' },
-  { name: 'Nasi Goreng Gongso', description: 'Solonese-style fried rice with sweet soy sauce and aromatic spices', price: 'Rp 32.000', image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=200&h=200&fit=crop' },
-  { name: 'Cireng Moza', description: 'Crispy on the outside, gooey mozzarella on the inside', price: 'Rp 25.000', image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=200&h=200&fit=crop' },
-  { name: 'Chicken Salted Egg', description: 'Crispy chicken tossed in rich and creamy salted egg sauce', price: 'Rp 35.000', image: 'https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=200&h=200&fit=crop' },
-  { name: 'Milky Corn Ribs', description: 'Crunchy corn ribs glazed with creamy savory sauce', price: 'Rp 28.000', image: 'https://images.unsplash.com/photo-1604152135912-04a022e23696?w=200&h=200&fit=crop' },
+const mocktailMenu: MenuItem[] = [
+  { name: 'Dry', description: 'Americano with sweet, acid, fresh — creamcheese & creamy on top', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=200&h=200&fit=crop' },
+  { name: 'Berrie', description: 'Tea based with creamy topping', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=200&h=200&fit=crop' },
+  { name: 'Autumn', description: 'Mocktail espresso with lychee and sakura flavour', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=200&h=200&fit=crop' },
+  { name: 'Moody', description: 'Mocktail non-espresso with strawberry and lychee', price: 'Rp 25.000', image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=200&h=200&fit=crop' },
+  { name: 'Winter', description: 'Mocktail espresso with soda and strawberry', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=200&h=200&fit=crop' },
+  { name: 'Woody', description: 'Mocktail non-espresso with sakura and strawberry', price: 'Rp 25.000', image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=200&h=200&fit=crop' },
+  { name: 'Americano Cranberry', description: 'Americano with cranberry flavour', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1551030173-122aabc4489c?w=200&h=200&fit=crop' },
+  { name: 'Americano Guava', description: 'Americano with guava flavour', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1551030173-122aabc4489c?w=200&h=200&fit=crop' },
+  { name: 'Americano Kiwi', description: 'Americano with kiwi flavour', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1551030173-122aabc4489c?w=200&h=200&fit=crop' },
+]
+
+const asianFoodMenu: MenuItem[] = [
+  { name: 'Chicken Sambal Matah', description: 'Balinese-style sambal with crispy chicken', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=200&h=200&fit=crop' },
+  { name: 'Chicken Katsu', description: 'Crispy breaded chicken with signature sauce', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=200&h=200&fit=crop' },
+  { name: 'Chicken Teriyaki', description: 'Glazed chicken with sweet teriyaki sauce', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=200&h=200&fit=crop' },
+  { name: 'Hongkong Fried Rice', description: 'Wok-tossed fried rice Hongkong style', price: 'Rp 25.000', image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=200&h=200&fit=crop' },
+  { name: 'Cheezy Curry Lava', description: 'Curry with melted cheese lava center', price: 'Rp 20.000', image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=200&h=200&fit=crop' },
+  { name: 'Cheezy Curry Creamy', description: 'Creamy curry with rich cheese sauce', price: 'Rp 20.000', image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=200&h=200&fit=crop' },
+  { name: 'Chicken Salted Egg', description: 'Crispy chicken with creamy salted egg sauce', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=200&h=200&fit=crop' },
+]
+
+const westernFoodMenu: MenuItem[] = [
+  { name: 'Aglio Pasta', description: 'Classic aglio olio with garlic and chili', price: 'Rp 24.000', image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=200&h=200&fit=crop' },
+  { name: 'Alfredo Pasta', description: 'Creamy fettuccine with parmesan sauce', price: 'Rp 24.000', image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=200&h=200&fit=crop' },
+  { name: 'Fractal Burger', description: 'Our signature house burger', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&h=200&fit=crop' },
+  { name: 'Mac & Cheese', description: 'Cheesy macaroni baked to perfection', price: 'Rp 25.000', image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=200&h=200&fit=crop' },
+  { name: 'Grilled Chicken Mushroom', description: 'Juicy grilled chicken with sautéed mushroom', price: 'Rp 28.000', image: 'https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=200&h=200&fit=crop' },
+  { name: 'The Sandwich', description: 'Our signature breakfast sandwich', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=200&h=200&fit=crop' },
+  { name: 'French Toast Matcha', description: 'French toast with premium matcha', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=200&h=200&fit=crop' },
+  { name: 'Hot Breakfast', description: 'Complete hot breakfast platter', price: 'Rp 26.000', image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=200&h=200&fit=crop' },
+]
+
+const snackMenu: MenuItem[] = [
+  { name: 'Bola Ubi', description: 'Sweet purple potato balls', price: 'Rp 18.000', image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=200&h=200&fit=crop' },
+  { name: 'Tahu Cabe Garam', description: 'Crispy tofu with salted chili', price: 'Rp 20.000', image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=200&h=200&fit=crop' },
+  { name: 'Mix Platter', description: 'Assorted snack platter — perfect for sharing', price: 'Rp 20.000', image: 'https://images.unsplash.com/photo-1604152135912-04a022e23696?w=200&h=200&fit=crop' },
+  { name: 'French Fries', description: 'Classic crispy golden fries', price: 'Rp 16.000', image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=200&h=200&fit=crop' },
+  { name: 'Cireng Moza', description: 'Crispy with gooey mozzarella inside', price: 'Rp 16.000', image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=200&h=200&fit=crop' },
+  { name: 'Spicy Wings', description: 'Fiery chicken wings with spice glaze', price: 'Rp 22.000', image: 'https://images.unsplash.com/photo-1604152135912-04a022e23696?w=200&h=200&fit=crop' },
+  { name: 'Bolu Pisang', description: 'Soft banana cake — sweet and comforting', price: 'Rp 18.000', image: 'https://images.unsplash.com/photo-1604152135912-04a022e23696?w=200&h=200&fit=crop' },
 ]
 
 const galleryItems = [
@@ -618,6 +665,17 @@ function MenuItemCard({ item, index }: { item: MenuItem; index: number }) {
   )
 }
 
+const menuTabs = [
+  { value: 'basic-coffee', label: 'Espresso Bar', shortLabel: 'Espresso', icon: Coffee, items: basicCoffeeMenu },
+  { value: 'handcraft', label: 'HandCraft', shortLabel: 'HandCraft', icon: Star, items: handCraftMenu },
+  { value: 'matcha-choco', label: 'Matcha & Choco', shortLabel: 'Matcha', icon: Leaf, items: matchaChocoMenu },
+  { value: 'non-coffee', label: 'Non-Coffee', shortLabel: 'Non-Coffee', icon: Heart, items: nonCoffeeMenu },
+  { value: 'mocktail', label: 'Mocktail', shortLabel: 'Mocktail', icon: Coffee, items: mocktailMenu },
+  { value: 'asian-food', label: 'Asian Food', shortLabel: 'Asian', icon: UtensilsCrossed, items: asianFoodMenu },
+  { value: 'western-food', label: 'Western & More', shortLabel: 'Western', icon: UtensilsCrossed, items: westernFoodMenu },
+  { value: 'snacks', label: 'Snacks', shortLabel: 'Snacks', icon: Heart, items: snackMenu },
+]
+
 function MenuSection() {
   return (
     <section id="menu" className="py-20 md:py-28 relative overflow-hidden">
@@ -631,62 +689,30 @@ function MenuSection() {
           subtitle="Crafted with passion, served with love"
         />
 
-        <Tabs defaultValue="espresso" className="w-full">
-          <TabsList className="mx-auto flex h-auto p-1 bg-secondary/50 rounded-full flex-wrap justify-center gap-1">
-            <TabsTrigger value="espresso" className="rounded-full px-4 sm:px-6 py-2.5 text-xs sm:text-sm data-[state=active]:bg-gold data-[state=active]:text-white">
-              <Coffee className="size-4 sm:mr-1.5" />
-              <span className="hidden sm:inline">Espresso Bar</span>
-              <span className="sm:hidden">Espresso</span>
-            </TabsTrigger>
-            <TabsTrigger value="handcraft" className="rounded-full px-4 sm:px-6 py-2.5 text-xs sm:text-sm data-[state=active]:bg-gold data-[state=active]:text-white">
-              <Star className="size-4 sm:mr-1.5" />
-              <span className="hidden sm:inline">HandCraft</span>
-              <span className="sm:hidden">HandCraft</span>
-            </TabsTrigger>
-            <TabsTrigger value="non-coffee" className="rounded-full px-4 sm:px-6 py-2.5 text-xs sm:text-sm data-[state=active]:bg-gold data-[state=active]:text-white">
-              <Leaf className="size-4 sm:mr-1.5" />
-              <span className="hidden sm:inline">Non-Coffee</span>
-              <span className="sm:hidden">Non-Coffee</span>
-            </TabsTrigger>
-            <TabsTrigger value="food" className="rounded-full px-4 sm:px-6 py-2.5 text-xs sm:text-sm data-[state=active]:bg-gold data-[state=active]:text-white">
-              <UtensilsCrossed className="size-4 sm:mr-1.5" />
-              <span className="hidden sm:inline">Fine Dish</span>
-              <span className="sm:hidden">Food</span>
-            </TabsTrigger>
+        <Tabs defaultValue="basic-coffee" className="w-full">
+          <TabsList className="mx-auto flex h-auto p-1.5 bg-secondary/50 rounded-full flex-wrap justify-center gap-1">
+            {menuTabs.map((tab) => (
+              <TabsTrigger
+                key={tab.value}
+                value={tab.value}
+                className="rounded-full px-3 sm:px-5 py-2 text-[11px] sm:text-sm data-[state=active]:bg-gold data-[state=active]:text-white"
+              >
+                <tab.icon className="size-3.5 sm:mr-1.5" />
+                <span className="hidden sm:inline">{tab.label}</span>
+                <span className="sm:hidden">{tab.shortLabel}</span>
+              </TabsTrigger>
+            ))}
           </TabsList>
 
-          <TabsContent value="espresso" className="mt-8">
-            <div className="grid gap-3 sm:gap-4">
-              {espressoBarMenu.map((item, i) => (
-                <MenuItemCard key={item.name} item={item} index={i} />
-              ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="handcraft" className="mt-8">
-            <p className="text-center text-sm text-muted-foreground mb-6 italic font-serif">Our signature handcrafted coffee creations</p>
-            <div className="grid gap-3 sm:gap-4">
-              {handCraftMenu.map((item, i) => (
-                <MenuItemCard key={item.name} item={item} index={i} />
-              ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="non-coffee" className="mt-8">
-            <div className="grid gap-3 sm:gap-4">
-              {nonCoffeeMenu.map((item, i) => (
-                <MenuItemCard key={item.name} item={item} index={i} />
-              ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="food" className="mt-8">
-            <div className="grid gap-3 sm:gap-4">
-              {foodMenu.map((item, i) => (
-                <MenuItemCard key={item.name} item={item} index={i} />
-              ))}
-            </div>
-          </TabsContent>
+          {menuTabs.map((tab) => (
+            <TabsContent key={tab.value} value={tab.value} className="mt-8">
+              <div className="grid gap-3 sm:gap-4">
+                {tab.items.map((item, i) => (
+                  <MenuItemCard key={item.name} item={item} index={i} />
+                ))}
+              </div>
+            </TabsContent>
+          ))}
         </Tabs>
       </div>
     </section>

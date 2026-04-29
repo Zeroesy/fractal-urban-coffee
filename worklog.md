@@ -5,33 +5,12 @@ Task: Build Fractal Urban Classic Coffee website
 
 Work Log:
 - Analyzed Google Maps link for cafe details using web-reader and web-search skills
-- Gathered comprehensive information about FRACTAL URBAN CLASSIC COFFEE from search results:
-  - Name: FRACTAL URBAN CLASSIC COFFEE
-  - Tagline: Premium Coffee • Fine Dish • Be Happy
-  - Motto: Coffee — work/hangout — repeat
-  - Location: Jalan Pelatuk I, Manahan, Surakarta, Jawa Tengah 57139, Indonesia
-  - Hours: Weekdays 08.00-24.00, Weekend 08.00-01.00
-  - Instagram: @fractal.coffee
-  - Features: Hidden gem, cozy atmosphere, aesthetic photo corners, work-friendly, fine dining
-- Updated layout.tsx with Playfair Display + Inter fonts and cafe-specific metadata
-- Created custom warm color palette (espresso, caramel, cream, latte, mocha) in globals.css
-- Added CSS animations (steam, float, fadeInUp, grain texture overlay)
-- Built complete single-page website (967 lines) with 7 sections:
-  1. Navbar - Sticky, transparent-to-solid, mobile responsive with Sheet
-  2. Hero - Full viewport, animated SVG coffee cup with steam, floating beans
-  3. About - Two-column layout, story narrative, feature stats cards
-  4. Menu - 3 tabbed categories (Coffee, Non-Coffee, Fine Dish) with 19 items
-  5. Gallery - 6-card grid with warm gradient placeholders and hover effects
-  6. Location - Google Maps embed + contact info cards
-  7. Footer - Dark espresso theme, 4-column layout
+- Gathered comprehensive information about FRACTAL URBAN CLASSIC COFFEE from search results
+- Built complete single-page website with 7 sections
 - Used framer-motion for scroll-triggered animations throughout
-- Verified no lint errors and successful compilation (HTTP 200)
 
 Stage Summary:
 - Production-quality cafe website built successfully
-- All data sourced from actual Google Maps and social media research
-- Warm coffee-themed design with custom CSS variables
-- Fully responsive (mobile-first)
 - Dev server running on port 3000
 
 ---
@@ -39,76 +18,52 @@ Task ID: 2
 Agent: Main Agent
 Task: Update menu to match real Fractal Coffee menu from Google Maps/GoFood
 
-Work Log:
-- Fetched Google Maps page for Fractal Urban Classic Coffee
-- Searched GoFood and multiple sources for actual menu items and prices
-- Found actual menu data from GoFood snippets and social media reviews:
-  - Espresso Bar: Espresso (21k), Americano (24k), Caffe Latte (23k), Cappuccino (27k), V60 (28k), Mocha (30k)
-  - HandCraft: Larasati/Gula Aren (25k), Van Halen/Vanilla (28k), French Caramel (28k), Macchiato (31k), Butterscotch (31k)
-  - Non-Coffee: Matcha Latte (28k), Choco Marshmallow (27k), Mocktail Berrie (25k), Mocktail Moody (25k), Lemon Tea (22k)
-  - Fine Dish: Sandwich (30k), Pasta Alfredo (38k), Nasi Goreng Merah (32k), Nasi Goreng Gongso (32k), Cireng Moza (25k), Chicken Salted Egg (35k), Milky Corn Ribs (28k)
-- Updated page.tsx with 4 menu tabs: Espresso Bar, HandCraft, Non-Coffee, Fine Dish
-- Replaced generic descriptions with actual GoFood descriptions
-- Each menu item has photo (Unsplash placeholder)
-- Verified no lint errors, dev server running with HTTP 200
-- Theme already updated to green/gold/white from previous session
-
 Stage Summary:
-- Menu now matches real Fractal Coffee menu from GoFood
-- 4 category tabs with 23 total menu items
-- All items have real prices and accurate descriptions
-- Green/gold/white theme active
+- Menu updated with real GoFood data (23 items, 4 tabs)
 
 ---
 Task ID: 3
 Agent: Main Agent
 Task: Add real atmosphere photos from Google Maps + update gallery section
 
-Work Log:
-- Used agent-browser to navigate to Google Maps listing for Fractal Urban Classic Coffee
-- Extracted actual photo from Google Maps (only 1 photo uploaded by user "Vie Septa")
-- Photo URL: https://lh3.googleusercontent.com/gps-cs-s/APNQkAEp6so0stPFEBaNL0TWh7F5QHsc1uCycMfpYSwaA3YAx44GjH-LEE17Y9wg9kJqYfmPa-KcM-XMCueq7XF8yRuenVq1QRpoJ-o7jPNpIC2tzk6pqogx-bRsySnbi5TNCHnBMeuUeFKh8UY
-- Updated galleryItems array with 6 real photos:
-  1. "Our Space" - Actual Google Maps photo (spanning 2 cols on desktop)
-  2. "Cozy Corner" - Unsplash coffee shop interior
-  3. "Aesthetic Vibes" - Unsplash cafe atmosphere
-  4. "Work Friendly" - Unsplash laptop coffee shop
-  5. "Hidden Gem" - Unsplash cozy coffee spot
-  6. "Fine Dish Experience" - Unsplash cafe food setting
-- Rewrote GallerySection component to display real photos with:
-  - Full-bleed images with object-cover
-  - Dark gradient overlay for text readability
-  - Hover zoom effect (scale-110)
-  - Photo source attribution ("Google Maps" for the real photo)
-  - "Lihat Foto Lengkap di Google Maps" CTA button
-- Updated About section to use real Google Maps photo instead of gradient placeholder
-- Updated next.config.ts to allow lh3.googleusercontent.com and ggpht.com domains
-- Verified no lint errors, dev server running HTTP 200
-
 Stage Summary:
-- Gallery now shows real photos (1 from Google Maps + 5 curated Unsplash atmosphere photos)
+- Gallery now shows real photos (1 from Google Maps + 5 curated Unsplash)
 - About section uses actual cafe photo from Google Maps
-- Masonry-like grid layout with first photo spanning 2 columns
-- Added CTA button linking to Google Maps for more photos
-- Theme already green/gold/white (confirmed from globals.css)
-- Menu already accurate to real menu (confirmed from worklog Task ID 2)
 
 ---
 Task ID: 4
 Agent: Main Agent
 Task: Fix red pin position on embedded Google Maps in Location section
 
+Stage Summary:
+- Map embed now uses search-based URL for correct pin location
+
+---
+Task ID: 5
+Agent: Main Agent
+Task: Update menu to match official PDF menu file provided by owner
+
 Work Log:
-- Identified issue: Google Maps embed URL used null place ID (`0x0:0x0`) and approximate coordinates (`110.80905, -7.55409`)
-- Searched for exact coordinates using web-search skill
-- Found correct coordinates from Apple Maps: latitude -7.554096, longitude 110.811626
-- Address confirmed: Jalan Pelatuk I No. 6, Surakarta, Central Java 57139
-- Replaced the `pb=` embed URL with a search-based embed URL that uses business name + address:
-  `https://maps.google.com/maps?q=Fractal+Urban+Classic+Coffee+Jl.+Pelatuk+I+Manahan+Surakarta&t=&z=17&ie=UTF8&iwloc=&output=embed`
-- This ensures the pin is placed at the correct business location rather than approximate coordinates
+- Extracted text from uploaded PDF: /home/z/my-project/upload/MENU_20260329_154654_0000.pdf (11 pages)
+- Parsed all 8 menu categories with 56 total items from PDF:
+  1. Basic Coffee (7 items): Espresso 12k, Americano 18k, Latte 18k, Cappuccino 22k, Dirty Latte 25k, V-60/Japanese 20k, Magic 25k
+  2. HandCraft (8 items): Larasati 20k, Maharasa 24k, Rum Burner 23k, Van Halen 23k, French Caramel 23k, Butterscotch Salt 26k, Mocca 26k, Hazelnut 23k
+  3. Matcha & Choco (5 items): Matcha Latte 25k, Matcha Mango Sticky Rice 27k, Coconut Matcha 26k, Choco Marshmallow 24k, Coconut Choco 26k
+  4. Non-Coffee (5 items): Red Velvet 25k, Taro 25k, Cookies n Cream 25k, Classic Tea 12k, Lychee Tea 16k
+  5. Mocktail (9 items): Dry 26k, Berrie 26k, Autumn 26k, Moody 25k, Winter 26k, Woody 25k, Am. Cranberry 26k, Am. Guava 26k, Am. Kiwi 26k
+  6. Asian Food (7 items): Chicken Sambal Matah 26k, Chicken Katsu 26k, Chicken Teriyaki 26k, Hongkong Fried Rice 25k, Cheezy Curry Lava 20k, Cheezy Curry Creamy 20k, Chicken Salted Egg 26k
+  7. Western & More (8 items): Aglio Pasta 24k, Alfredo Pasta 24k, Fractal Burger 26k, Mac & Cheese 25k, Grilled Chicken Mushroom 28k, The Sandwich 26k, French Toast Matcha 26k, Hot Breakfast 26k
+  8. Snacks (7 items): Bola Ubi 18k, Tahu Cabe Garam 20k, Mix Platter 20k, French Fries 16k, Cireng Moza 16k, Spicy Wings 22k, Bolu Pisang 18k
+- Replaced all 4 old menu data arrays with 8 new arrays matching PDF exactly
+- Refactored MenuSection to use data-driven `menuTabs` array (no more hardcoded tab triggers)
+- Updated prices to match PDF (previously had higher prices from GoFood)
+- Updated item names and descriptions to match PDF exactly
+- Tab bar now has 8 tabs with flex-wrap for mobile scrollability
+- Each item has Unsplash food/drink photo
 - Verified: lint clean, HTTP 200, dev server running
 
 Stage Summary:
-- Map embed now uses search-based URL which resolves to the correct pin location
-- Red pin should now point accurately to Fractal Urban Classic Coffee
-- Zoom level set to 17 for clear street-level visibility
+- Menu now matches official PDF menu exactly: 8 categories, 56 items
+- Prices updated from PDF (lower than previous GoFood prices)
+- New items added: Dirty Latte, Magic, Maharasa, Rum Burner, Hazelnut, Matcha Mango Sticky Rice, Coconut Matcha, Coconut Choco, Red Velvet, Taro, Cookies n Cream, Dry, Autumn, Winter, Woody, Americano series, Asian food items, Western food items, Breakfast items, Snack items
+- Items removed (not in PDF): Caffe Latte (renamed to Latte), V60 (renamed to V-60/Japanese), Mocha, Macchiato, Lemon Tea, Mocktail Berrie, Mocktail Moody, Nasi Goreng Merah, Nasi Goreng Gongso, Milky Corn Ribs
