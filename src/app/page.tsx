@@ -185,7 +185,7 @@ const navLinks = [
 ]
 
 const stats = [
-  { icon: Coffee, label: '100% Arabica Beans', description: 'Sourced from premium Indonesian farms' },
+  { icon: Coffee, label: 'Houseblend Beans 50:50', description: 'Sourced from premium Indonesian farms' },
   { icon: Heart, label: 'Cozy Atmosphere', description: 'Designed for comfort and inspiration' },
   { icon: UtensilsCrossed, label: 'Fine Dish', description: 'Premium food for every craving' },
   { icon: Wifi, label: 'Free WiFi', description: 'Stay connected while you unwind' },
@@ -596,7 +596,7 @@ function AboutSection() {
                 is your go-to destination.
               </p>
               <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                Every cup is crafted from 100% Arabica beans, every dish is prepared with 
+                Every cup is crafted from 50% 50% houseblend beans, every dish is prepared with 
                 passion, and every corner is designed to make you feel at home. With free 
                 WiFi, aesthetic photo corners, and an atmosphere that blends urban sophistication 
                 with classic warmth — this is where your best moments happen.
@@ -612,11 +612,18 @@ function AboutSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 * index }}
+                  whileHover={{ scale: 1.05 }}
+                  className="group"
                 >
-                  <Card className="border-border/50 hover:border-gold/30 hover:shadow-md transition-all duration-300 py-4 gap-3">
-                    <CardContent className="px-4">
+                  <Card className="border-border/50 hover:border-gold/30 hover:shadow-md transition-all duration-300 py-4 gap-3 h-full flex flex-col">
+                    <CardContent className="px-4 flex-1 flex flex-col">
                       <stat.icon className="size-5 text-gold mb-1.5" />
-                      <p className="text-sm font-semibold text-primary leading-tight">{stat.label}</p>
+                      <p className="text-sm font-semibold text-primary leading-tight mb-2">
+                        {stat.label}
+                      </p>
+                      <p className="text-xs text-muted-foreground leading-tight">
+                        {stat.description}
+                      </p>
                     </CardContent>
                   </Card>
                 </motion.div>
