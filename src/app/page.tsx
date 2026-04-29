@@ -135,7 +135,7 @@ const galleryItems = [
   {
     title: 'Our Space',
     description: 'Modern interior with warm lighting',
-    image: 'about-cafe.jpg',
+    image: 'about-cafe.JPG',
     source: 'Google Maps',
     span: 'sm:col-span-2 lg:col-span-2 lg:row-span-2',
   },
@@ -549,7 +549,7 @@ function AboutSection() {
           >
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl shadow-forest/10">
               <Image
-                src="/about-cafe.jpg"
+                src="/about-cafe.JPG"
                 alt="Fractal Urban Classic Coffee Interior"
                 fill
                 className="object-cover"
