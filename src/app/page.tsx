@@ -135,7 +135,7 @@ const galleryItems = [
   {
     title: 'Our Space',
     description: 'Modern interior with warm lighting',
-    image: 'https://lh3.googleusercontent.com/gps-cs-s/APNQkAEp6so0stPFEBaNL0TWh7F5QHsc1uCycMfpYSwaA3YAx44GjH-LEE17Y9wg9kJqYfmPa-KcM-XMCueq7XF8yRuenVq1QRpoJ-o7jPNpIC2tzk6pqogx-bRsySnbi5TNCHnBMeuUeFKh8UY=w800-h600-k-no',
+    image: 'about-cafe.jpg',
     source: 'Google Maps',
     span: 'sm:col-span-2 lg:col-span-2 lg:row-span-2',
   },
@@ -301,13 +301,24 @@ function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between">
         {/* Logo */}
-        <a href="#home" className="flex flex-col items-start group">
-          <span className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-primary transition-colors group-hover:text-gold">
-            FRACTAL
-          </span>
-          <span className="text-[0.6rem] sm:text-xs tracking-[0.25em] uppercase text-muted-foreground font-medium">
-            Urban Classic Coffee
-          </span>
+        <a href="#home" className="flex items-center gap-3 group">
+          <div className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0">
+            <Image
+              src="/logo-circular.png"
+              alt="Fractal Urban Classic Coffee Logo"
+              width={48}
+              height={48}
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <div className="flex flex-col items-start">
+            <span className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-primary transition-colors group-hover:text-gold">
+              FRACTAL
+            </span>
+            <span className="text-[0.6rem] sm:text-xs tracking-[0.25em] uppercase text-muted-foreground font-medium">
+              Urban Classic Coffee
+            </span>
+          </div>
         </a>
 
         {/* Desktop Nav */}
@@ -538,12 +549,11 @@ function AboutSection() {
           >
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl shadow-forest/10">
               <Image
-                src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAEp6so0stPFEBaNL0TWh7F5QHsc1uCycMfpYSwaA3YAx44GjH-LEE17Y9wg9kJqYfmPa-KcM-XMCueq7XF8yRuenVq1QRpoJ-o7jPNpIC2tzk6pqogx-bRsySnbi5TNCHnBMeuUeFKh8UY=w800-h1000-k-no"
+                src="/about-cafe.jpg"
                 alt="Fractal Urban Classic Coffee Interior"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
-                unoptimized
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
               {/* Text overlay */}
