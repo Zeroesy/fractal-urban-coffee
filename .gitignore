@@ -36,19 +36,49 @@ yarn-error.log*
 # vercel
 .vercel
 
-
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 local-*
+
+# IDE & config
 .claude
 .z-ai-config
+
+# Logs
 *.log
 dev.log
 dev.out.log
+server.log
+
+# Project-specific data files (scraped/research data)
+cafe_*.json
+menu_search*.json
+gmaps_menu.json
+gofood_menu.json
+maps-*.json
+search-results.json
+
+# Database files
+/db/*.db
+/db/*.db-journal
+/prisma/*.db
+/prisma/*.db-journal
+
+# Uploads & downloads
+/upload/
+/download/
+
+# Screenshots
+*.png
+!public/**/*.png
+
+# Skills directory
+/skills/
+
+# Test & prompt files
 test
 prompt
 
-server.log
-# Skills directory
-/skills/
+# Mini services (if any local)
+mini-services/
